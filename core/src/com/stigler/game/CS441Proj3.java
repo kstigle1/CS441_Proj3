@@ -9,11 +9,16 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class CS441Proj3 extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
+	Singleton single;
+	InProcess inProc;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
+		single = Singleton.getInstance();
+		inProc = new InProcess();
+		Gdx.input.setInputProcessor(inProc);
 	}
 
 	@Override
@@ -21,7 +26,7 @@ public class CS441Proj3 extends ApplicationAdapter {
 		Gdx.gl.glClearColor((float).33, (float).73, (float).95, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(img, 0, 0);
+		batch.draw(img, single.x, single.y, single.picW, single.picH);
 		batch.end();
 	}
 	
@@ -29,5 +34,12 @@ public class CS441Proj3 extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
+	}
+
+	@Override
+	public void resize(int width, int height)
+	{
+		single.screenW = width;
+		single.screenH = height;
 	}
 }
