@@ -47,9 +47,9 @@ public class InProcess implements InputProcessor
     public boolean touchUp(int screenX, int screenY, int pointer, int button)
     {
         elapseTime = TimeUtils.timeSinceMillis(startTime);
-        multiDist = elapseTime/1000.0;
-        single.moveTo = (int) multiDist*190;
-        if (single.moveTo == 0)
+        multiDist = elapseTime*190.0;
+        single.moveTo = (int) multiDist/1000;
+        if (single.moveTo <= 50)
         {
             single.moveTo = 50;
         }
