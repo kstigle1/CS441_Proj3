@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class CS441Proj3 extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img, img2;
+	Texture img, img2, img3, img4, img5;
 	Singleton single;
 	InProcess inProc;
 	
@@ -17,6 +17,11 @@ public class CS441Proj3 extends ApplicationAdapter {
 		batch = new SpriteBatch();
 		img = new Texture("monkey3.png");
 		img2 = new Texture("bananas.png");
+		img3 = new Texture("backgroundsky.jpg");
+		img4 = new Texture("backgroundground.jpg");
+		img5 = new Texture("tree.png");
+
+
 		single = Singleton.getInstance();
 		inProc = new InProcess();
 		Gdx.input.setInputProcessor(inProc);
@@ -29,6 +34,9 @@ public class CS441Proj3 extends ApplicationAdapter {
 		tick();
 		single.y1 += single.dy1;
 		batch.begin();
+		batch.draw(img4, 0, 0, single.screenW, single.groundY);
+		batch.draw(img3, 0, single.groundY, single.screenW, single.screenH-single.groundY);
+		batch.draw(img5, 0, single.groundY-115, single.screenW, single.screenH-single.groundY+225);
 		batch.draw(img, single.x1, single.y1, single.picW1, single.picH);
 		batch.draw(img2, single.x2, single.y2, single.picW2, single.picH);
 		batch.end();
@@ -66,6 +74,9 @@ public class CS441Proj3 extends ApplicationAdapter {
 		batch.dispose();
 		img.dispose();
 		img2.dispose();
+		img3.dispose();
+		img4.dispose();
+		img5.dispose();
 	}
 
 	@Override
@@ -79,5 +90,6 @@ public class CS441Proj3 extends ApplicationAdapter {
 		single.y2 = (single.screenH - single.y1 - single.picH);
 		single.moveTo = (height/7)-1;
 		single.starting = (height/7);
+		single.groundY = single.y1+50;
 	}
 }
