@@ -27,8 +27,9 @@ public class InProcess implements InputProcessor
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
-        System.out.println(single.screenW + " " + single.screenH);
-        if (screenX < single.screenW && screenY > (single.screenH)-(single.picH))
+
+        if (screenX > (single.screenW/2) - (single.picW/2) && screenX < (single.screenW/2) + (single.picW/2) &&
+            screenY < single.screenH - (single.screenH/7) && screenY > (single.screenH - (single.screenH/7)) - single.picH)
         {
             single.x += 50;
             single.y += 50;

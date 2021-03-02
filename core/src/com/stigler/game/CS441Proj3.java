@@ -41,5 +41,7 @@ public class CS441Proj3 extends ApplicationAdapter {
 	{
 		single.screenW = width;
 		single.screenH = height;
+		single.x = (width/2) - (single.picW/2);
+		single.y = (height/7);
 	}
 }

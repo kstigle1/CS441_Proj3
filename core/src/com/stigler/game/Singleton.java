@@ -4,8 +4,9 @@ public class Singleton
 {
     private static Singleton single = null;
 
-    int dx=0, dy=0, x=415, y=300, picH=250, picW=250;
-    int screenH, screenW;
+    int screenH, screenW; //2080, 1080
+    int dx=0, dy=0, x, y, picH=250, picW=250;
+
 
     private Singleton()
     {
