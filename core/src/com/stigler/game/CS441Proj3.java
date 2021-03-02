@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class CS441Proj3 extends ApplicationAdapter {
 	SpriteBatch batch;
-	Texture img;
+	Texture img, img2;
 	Singleton single;
 	InProcess inProc;
 	
@@ -16,6 +16,7 @@ public class CS441Proj3 extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
+		img2 = new Texture("badlogic.jpg");
 		single = Singleton.getInstance();
 		inProc = new InProcess();
 		Gdx.input.setInputProcessor(inProc);
@@ -25,15 +26,46 @@ public class CS441Proj3 extends ApplicationAdapter {
 	public void render () {
 		Gdx.gl.glClearColor((float).33, (float).73, (float).95, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		tick();
+		single.y1 += single.dy1;
 		batch.begin();
-		batch.draw(img, single.x, single.y, single.picW, single.picH);
+		batch.draw(img, single.x1, single.y1, single.picW, single.picH);
+		batch.draw(img2, single.x2, single.y2, single.picW, single.picH);
 		batch.end();
 	}
-	
+
+	public void tick()
+	{
+
+		if (single.y1 >= single.y2 - single.picH)
+		{
+			single.dy1 = 0;
+			single.moveTo = single.starting-1;
+			single.moving = false;
+			single.y1 = single.starting;
+		}
+		else if (single.y1 == single.moveTo + single.starting + 1)
+		{
+			single.dy1 = -1;
+		}
+		else if (single.y1 == single.starting && single.moving == true)
+		{
+			single.dy1 = 0;
+			single.moveTo = single.starting-1;
+			single.moving = false;
+		}
+		else if (single.moveTo != single.starting-1 && single.moving == false)
+		{
+			single.dy1 = 1;
+			single.moving = true;
+		}
+	}
+
 	@Override
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
+		img2.dispose();
 	}
 
 	@Override
@@ -41,7 +73,11 @@ public class CS441Proj3 extends ApplicationAdapter {
 	{
 		single.screenW = width;
 		single.screenH = height;
-		single.x = (width/2) - (single.picW/2);
-		single.y = (height/7);
+		single.x1 = (width/2) - (single.picW/2);
+		single.y1 = (height/7);
+		single.x2 = (width/2) - (single.picW/2);
+		single.y2 = (single.screenH - single.y1 - single.picH);
+		single.moveTo = (height/7)-1;
+		single.starting = (height/7);
 	}
 }

@@ -1,10 +1,15 @@
 package com.stigler.game;
 
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.utils.TimeUtils;
+
+import java.util.Timer;
 
 public class InProcess implements InputProcessor
 {
     Singleton single = Singleton.getInstance();
+    long startTime, elapseTime;
+    double multiDist;
 
     @Override
     public boolean keyDown(int keycode)
@@ -31,8 +36,8 @@ public class InProcess implements InputProcessor
         if (screenX > (single.screenW/2) - (single.picW/2) && screenX < (single.screenW/2) + (single.picW/2) &&
             screenY < single.screenH - (single.screenH/7) && screenY > (single.screenH - (single.screenH/7)) - single.picH)
         {
-            single.x += 50;
-            single.y += 50;
+            //single.y1 += 950;
+            startTime = TimeUtils.millis();
             return true;
         }
         return false;
@@ -41,7 +46,15 @@ public class InProcess implements InputProcessor
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button)
     {
-        return false;
+        elapseTime = TimeUtils.timeSinceMillis(startTime);
+        multiDist = elapseTime/1000.0;
+        single.moveTo = (int) multiDist*190;
+        if (single.moveTo == 0)
+        {
+            single.moveTo = 50;
+        }
+        System.out.println(single.y2 + " "  + single.y1);
+        return true;
     }
 
     @Override
