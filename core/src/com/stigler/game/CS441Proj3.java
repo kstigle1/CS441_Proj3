@@ -15,8 +15,8 @@ public class CS441Proj3 extends ApplicationAdapter {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
-		img2 = new Texture("badlogic.jpg");
+		img = new Texture("monkey3.png");
+		img2 = new Texture("bananas.png");
 		single = Singleton.getInstance();
 		inProc = new InProcess();
 		Gdx.input.setInputProcessor(inProc);
@@ -29,8 +29,8 @@ public class CS441Proj3 extends ApplicationAdapter {
 		tick();
 		single.y1 += single.dy1;
 		batch.begin();
-		batch.draw(img, single.x1, single.y1, single.picW, single.picH);
-		batch.draw(img2, single.x2, single.y2, single.picW, single.picH);
+		batch.draw(img, single.x1, single.y1, single.picW1, single.picH);
+		batch.draw(img2, single.x2, single.y2, single.picW2, single.picH);
 		batch.end();
 	}
 
@@ -73,9 +73,9 @@ public class CS441Proj3 extends ApplicationAdapter {
 	{
 		single.screenW = width;
 		single.screenH = height;
-		single.x1 = (width/2) - (single.picW/2);
+		single.x1 = (width/2) - (single.picW1/2);
 		single.y1 = (height/7);
-		single.x2 = (width/2) - (single.picW/2);
+		single.x2 = (width/2) - (single.picW2/2);
 		single.y2 = (single.screenH - single.y1 - single.picH);
 		single.moveTo = (height/7)-1;
 		single.starting = (height/7);

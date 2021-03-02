@@ -33,7 +33,7 @@ public class InProcess implements InputProcessor
     public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
 
-        if (screenX > (single.screenW/2) - (single.picW/2) && screenX < (single.screenW/2) + (single.picW/2) &&
+        if (screenX > (single.screenW/2) - (single.picW1/2) && screenX < (single.screenW/2) + (single.picW1/2) &&
             screenY < single.screenH - (single.screenH/7) && screenY > (single.screenH - (single.screenH/7)) - single.picH)
         {
             //single.y1 += 950;
