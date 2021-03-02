@@ -34,11 +34,11 @@ public class CS441Proj3 extends ApplicationAdapter {
 		tick();
 		single.y1 += single.dy1;
 		batch.begin();
-		batch.draw(img4, 0, 0, single.screenW, single.groundY);
-		batch.draw(img3, 0, single.groundY, single.screenW, single.screenH-single.groundY);
-		batch.draw(img5, 0, single.groundY-115, single.screenW, single.screenH-single.groundY+225);
-		batch.draw(img, single.x1, single.y1, single.picW1, single.picH);
-		batch.draw(img2, single.x2, single.y2, single.picW2, single.picH);
+		batch.draw(img4, 0, 0, single.screenW, single.groundY); //ground
+		batch.draw(img3, 0, single.groundY, single.screenW, single.screenH-single.groundY); //sky
+		batch.draw(img5, 0, single.groundY-115, single.screenW, single.screenH-single.groundY+225); //tree
+		batch.draw(img, single.x1, single.y1, single.picW1, single.picH); //monkey
+		batch.draw(img2, single.x2, single.y2, single.picW2, single.picH); //bananas
 		batch.end();
 	}
 
