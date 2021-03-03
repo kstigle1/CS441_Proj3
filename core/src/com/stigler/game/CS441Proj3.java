@@ -45,7 +45,7 @@ public class CS441Proj3 extends ApplicationAdapter {
 	public void tick()
 	{
 
-		if (single.y1 >= single.y2 - single.picH)
+		if (single.y1 >= single.y2 - single.picH + 50)
 		{
 			single.dy1 = 0;
 			single.moveTo = single.starting-1;
