@@ -53,7 +53,6 @@ public class InProcess implements InputProcessor
         {
             single.moveTo = 50;
         }
-        System.out.println(single.y2 + " "  + single.y1);
         return true;
     }
 
