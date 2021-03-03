@@ -9,6 +9,7 @@ public class Singleton
     int moveTo, starting;
     boolean moving = false;
     int groundY, skyY;
+    int didWin;
 
 
     private Singleton()
